@@ -18,7 +18,7 @@ public class BuildingPlacement : MonoBehaviour {
     private void Update() {
         if (Input.GetKeyUp(KeyCode.B))
         {
-
+            StartCoroutine("SelectBuildingPlacement");
         }
     }
 
@@ -38,7 +38,17 @@ public class BuildingPlacement : MonoBehaviour {
     {
         while (true)
         {
-
+            if (Input.touchCount != 0 || Input.GetAxis("RightClick") == 1)
+            {
+                RaycastHit hit;
+                Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000f);
+                Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
+                if (hit.collider != null)
+                {
+                    GameObject g = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    g.transform.position = hit.point;
+                }
+            }
             yield return null;
         }
     }
