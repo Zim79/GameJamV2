@@ -8,7 +8,8 @@ public class BuildingPlacement : MonoBehaviour {
     public GameObject[] Buildings = new GameObject[4];
 
     Vector3 clickPosInWorldCoordinates;
-
+    Coroutine waitForClick;
+    bool buildMode;
 
 	void Start () 
     {
@@ -18,25 +19,19 @@ public class BuildingPlacement : MonoBehaviour {
     private void Update() {
         if (Input.GetKeyUp(KeyCode.B))
         {
-            StartCoroutine("SelectBuildingPlacement");
+            InitiateBuildMode(Building.Townhall);
         }
     }
 
-    /*void SelectBuildingPlacement()     
+    public void InitiateBuildMode(Building buildingType) 
     {
-        if (Input.touchCount != 0 || Input.GetAxis("RightClick") == 1)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(clickPosInWorldCoordinates), out hit))
-            {
-                print(hit.collider.name);
-            }
-        }
-    }*/
+        buildMode = true;
+        waitForClick = StartCoroutine("SelectBuildingPlacement");
+    }
 
     IEnumerator SelectBuildingPlacement() 
     {
-        while (true)
+        while (buildMode)
         {
             if (Input.touchCount != 0 || Input.GetAxis("RightClick") == 1)
             {
@@ -47,10 +42,13 @@ public class BuildingPlacement : MonoBehaviour {
                 {
                     GameObject g = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     g.transform.position = hit.point;
+                    buildMode = false;
                 }
             }
             yield return null;
         }
+        if (!buildMode)
+            StopCoroutine(waitForClick);
     }
 }
 
