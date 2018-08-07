@@ -295,6 +295,7 @@ MonoBehaviour:
   twoDist: {x: 0, y: 0, z: 0}
   dist: 0
   mat: {fileID: 2100000, guid: e8768dd963d409943ab7031aa85b1066, type: 2}
+  mat1: {fileID: 2100000, guid: 4056c9ba6463720459c80205d9223ec3, type: 2}
   build: 1
   wPos: []
   wRot: []
