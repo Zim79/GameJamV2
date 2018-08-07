@@ -6,80 +6,97 @@ using UnityEngine.UI;
 public class BuildingPlacement : MonoBehaviour {
 
     public GameObject[] Buildings = new GameObject[4];
+    public List<GameObject> PlacedBuildings = new List<GameObject>();
 
     Vector3 clickPosInWorldCoordinates;
-    Coroutine waitForClick;
+    Coroutine waitForBuild;
     GameObject buildingToPlace;
     bool buildMode;
-    bool spaceAvailable;
 
 	void Start () 
     {
-		
+
 	}
 
-    public void InitiateBuildMode(Building buildingType) 
+    public void InitiateBuildMode(Building _buildingType) 
     {
         buildMode = true;
-        waitForClick = StartCoroutine("SelectBuildingPlacement");
+        waitForBuild = StartCoroutine("SelectBuildingPlacement", _buildingType);
     }
 
-    IEnumerator SelectBuildingPlacement() 
-    {
+    IEnumerator SelectBuildingPlacement(Building _buildingType) {
         while (buildMode)
         {
-            if(buildingToPlace == null)
+            if (buildingToPlace == null)
             {
-                buildingToPlace = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                buildingToPlace.layer=2;
+                buildingToPlace = Instantiate(Buildings[(int)_buildingType - 1]);
+                buildingToPlace.layer = 2;
             }
+
 
             RaycastHit hit;
             Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000f, 1);
+
+            if(Input.touches.Length == 1)
+                Physics.Raycast(Camera.main.ScreenPointToRay(Input.touches[0].position), out hit, 1000f, 1);
+
             if (hit.collider != null)
             {
-                buildingToPlace.transform.position = hit.point + Vector3.up/2;
-
-                LayerMask layerMask = 1 << 9;
-                
-                Collider[] checkSpaceAvailable = Physics.OverlapBox(buildingToPlace.transform.position, new Vector3(buildingToPlace.transform.localScale.x, buildingToPlace.transform.localScale.y/2, buildingToPlace.transform.localScale.z/2), Quaternion.identity, layerMask);
-                if (checkSpaceAvailable.Length != 0)
-                {
-                    spaceAvailable = false;
-                    print("Can't build; " + checkSpaceAvailable[0] + " in the way!");
-                }
-                else
-                {
-                    spaceAvailable = true;
-                }
+                buildingToPlace.transform.position = hit.point;
             }
-
-            if (Input.touchCount != 0 || Input.GetMouseButtonDown (0) && spaceAvailable)
-            {
-                buildMode = false;
-                buildingToPlace.layer = 9;
-                buildingToPlace = null;
-            }
-
-
+            if (!buildMode)
+                StopCoroutine(waitForBuild);
             yield return null;
         }
-        if (!buildMode)
-            StopCoroutine(waitForClick);
     }
-    private void OnDrawGizmos() {
-        if (buildMode)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(buildingToPlace.transform.position, new Vector3(buildingToPlace.transform.localScale.x, buildingToPlace.transform.localScale.y, buildingToPlace.transform.localScale.z));
-        }
-        
+
+    public void PlaceBuilding(Building _buildingType) {
+        buildMode = false;
+        Destroy(buildingToPlace);
+        buildingToPlace = null;
+
+        PlacedBuildings.Add(Instantiate(Buildings[(int)_buildingType - 1]));
+
     }
+
 }
 
 public enum Building {
     None,
     TownHall,
     House,
-    Tower
+    Tower,
+    Farm
 }
+                /*
+                LayerMask layerMask = 1 << 9;
+                Collider[] checkSpaceAvailable = Physics.OverlapBox(buildingToPlace.transform.position, new Vector3(5,2,5), Quaternion.identity, layerMask);
+                if (checkSpaceAvailable.Length != 0)
+                {
+                    bool allPassed = false;
+                    foreach (Collider col in checkSpaceAvailable)
+                    {
+                        print(Vector2.Distance(buildingToPlace.GetComponent<BoxCollider>().bounds.ClosestPoint(col.GetComponent<BoxCollider>().bounds.ClosestPoint(buildingToPlace.transform.position)), col.GetComponent<BoxCollider>().bounds.ClosestPoint(buildingToPlace.GetComponent<BoxCollider>().bounds.ClosestPoint(buildingToPlace.transform.position))));
+                        if (Vector2.Distance(buildingToPlace.GetComponent<BoxCollider>().bounds.ClosestPoint(col.GetComponent<BoxCollider>().bounds.ClosestPoint(buildingToPlace.transform.position)), col.GetComponent<BoxCollider>().bounds.ClosestPoint(buildingToPlace.GetComponent<BoxCollider>().bounds.ClosestPoint(col.transform.position))) < 0.1f)
+                        {
+                            allPassed = false;
+                            spaceAvailable = false;
+                            break;
+                        }
+                        allPassed = true;
+                    }
+                    if (allPassed)
+                    {
+                        spaceAvailable = true;
+                    }
+                    else
+                    {
+                        print("Can't build; " + checkSpaceAvailable[0] + " in the way!");
+
+                    }
+                }
+                else
+                {
+                    spaceAvailable = true;
+                }
+            }*/
