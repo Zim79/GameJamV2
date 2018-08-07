@@ -9,19 +9,13 @@ public class BuildingPlacement : MonoBehaviour {
 
     Vector3 clickPosInWorldCoordinates;
     Coroutine waitForClick;
+    GameObject buildingToPlace;
     bool buildMode;
 
 	void Start () 
     {
 		
 	}
-
-    private void Update() {
-        if (Input.GetKeyUp(KeyCode.B))
-        {
-            InitiateBuildMode(Building.Townhall);
-        }
-    }
 
     public void InitiateBuildMode(Building buildingType) 
     {
@@ -33,18 +27,26 @@ public class BuildingPlacement : MonoBehaviour {
     {
         while (buildMode)
         {
+            if(buildingToPlace == null)
+            {
+                buildingToPlace = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                buildingToPlace.layer=2;
+            }
+
+            RaycastHit hit;
+            Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000f, 1);
+            if (hit.collider != null)
+            {
+                buildingToPlace.transform.position = hit.point;
+            }
+
             if (Input.touchCount != 0 || Input.GetAxis("RightClick") == 1)
             {
-                RaycastHit hit;
-                Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000f);
-                Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
-                if (hit.collider != null)
-                {
-                    GameObject g = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    g.transform.position = hit.point;
-                    buildMode = false;
-                }
+                buildMode = false;
+                buildingToPlace = null;
             }
+
+
             yield return null;
         }
         if (!buildMode)
@@ -53,7 +55,8 @@ public class BuildingPlacement : MonoBehaviour {
 }
 
 public enum Building {
-    Townhall,
+    None,
+    TownHall,
     House,
-    Tower,
+    Tower
 }

@@ -403,6 +403,51 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 212309435}
   m_CullTransparentMesh: 0
+--- !u!1 &282358064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 282358066}
+  - component: {fileID: 282358065}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &282358065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 282358064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f9f261820a44848b862cba133084dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Buildings:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!4 &282358066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 282358064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 234.66335, y: 258.06946, z: -466.55148}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &400605396
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +640,6 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
-  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -663,22 +707,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
---- !u!114 &534669906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65f9f261820a44848b862cba133084dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Buildings:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &555278132
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,7 +1009,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 853205038}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1806944887}
+        m_MethodName: BuildTownHall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &853205038
@@ -1427,7 +1466,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1040356866}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1806944887}
+        m_MethodName: OpenBuildUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1040356866
@@ -2386,6 +2436,7 @@ GameObject:
   - component: {fileID: 1806944885}
   - component: {fileID: 1806944884}
   - component: {fileID: 1806944883}
+  - component: {fileID: 1806944887}
   m_Layer: 5
   m_Name: MAINGAMEUI
   m_TagString: Untagged
@@ -2470,6 +2521,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1806944887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1806944882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a0d6a9a7c6e584ba2ed63371cd542f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildPanel: {fileID: 433943916}
+  BuildingPlacementScript: {fileID: 282358065}
 --- !u!1 &1835806418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2701,7 +2765,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1913196595}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1806944887}
+        m_MethodName: CloseBuildUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1913196595
