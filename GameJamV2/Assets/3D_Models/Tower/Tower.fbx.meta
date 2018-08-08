@@ -1,32 +1,26 @@
 fileFormatVersion: 2
-guid: 547b2ce7946070441b7633d76e08a61c
+guid: 17cf6be16638977438404d2753e616f3
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: DirtDark
-    2100002: DirtLight
-    2100004: Wheat
+    2100000: Material.003
+    2100002: Material.004
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cube
+    4300000: Cylinder
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: DirtDark
-    second: {fileID: 2100000, guid: 02c99953f27fd06449ce228075ab570d, type: 2}
+      name: Material.003
+    second: {fileID: 2100000, guid: 334d6357f6c55e34980fb6a5fb1b6edf, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: DirtLight
-    second: {fileID: 2100000, guid: c6ce0ba9894cc114d9908dc932d4e0ec, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wheat
-    second: {fileID: 2100000, guid: 84ec3ff4e2f79e544893cb6363d28850, type: 2}
+      name: Material.004
+    second: {fileID: 2100000, guid: e30cf01c26488dc4585d9ba5fffc0e13, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
