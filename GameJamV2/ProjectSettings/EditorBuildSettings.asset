@@ -5,10 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/MainMenu.unity
     guid: 5f19e3fd07fa57c42bc306737dc5805c
+=======
+    path: Assets/Scenes/UIBuildTest.unity
+    guid: 6f2ab6129ebb09349ab911578775c30d
+>>>>>>> DragUI
   m_configObjects: {}
