@@ -1,17 +1,26 @@
 fileFormatVersion: 2
-guid: 8d24bb7ee4fcd8d4993071d6813cbfac
+guid: 8ed2d5c8469e8f7478d9a414c44ff9a6
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: None__HouseB-ColourSwatch_png
+    2100000: No Name
+    2100002: Material.004
+    2100004: Material.001
+    2100006: Material.003
+    2100008: Material.002
+    2100010: Material
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cube
-    7400000: Default Take
-    9500000: //RootNode
-  externalObjects: {}
+    4300000: MainBuilding
+    4300002: TownHall
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 8d24bb7ee4fcd8d4993071d6813cbfac, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
@@ -63,7 +72,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -88,7 +97,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
