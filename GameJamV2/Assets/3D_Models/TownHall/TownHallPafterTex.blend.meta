@@ -101,6 +101,8 @@ ModelImporter:
     100190: Tower_003
     100192: //RootNode
     100194: Window
+    100196: Cylinder_016
+    100198: Plane
     400000: Cube
     400002: Cube_001
     400004: Cube_002
@@ -199,9 +201,12 @@ ModelImporter:
     400190: Tower_003
     400192: //RootNode
     400194: Window
+    400196: Cylinder_016
+    400198: Plane
     2100000: None__ColourPallet_png
     2100002: unnamed
     2100004: None__ColourPallet2_0_png
+    2100006: None__ColourPallet3_0_png
     2300000: Cube
     2300002: Cube_001
     2300004: Cube_002
@@ -299,6 +304,8 @@ ModelImporter:
     2300188: Tower_002
     2300190: Tower_003
     2300192: Window
+    2300194: Cylinder_016
+    2300196: Plane
     3300000: Cube
     3300002: Cube_001
     3300004: Cube_002
@@ -396,6 +403,8 @@ ModelImporter:
     3300188: Tower_002
     3300190: Tower_003
     3300192: Window
+    3300194: Cylinder_016
+    3300196: Plane
     4300000: MainBuilding_003
     4300002: Tower_003
     4300004: Door_003
@@ -493,6 +502,8 @@ ModelImporter:
     4300188: Door
     4300190: Tower
     4300192: MainBuilding
+    4300194: Cylinder_016
+    4300196: Plane
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs
