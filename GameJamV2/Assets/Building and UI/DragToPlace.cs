@@ -60,14 +60,15 @@ public class DragToPlace : MonoBehaviour {
 
     public void PlacementModeInitiated(Building _shopItem) {
         isBuyMode = true;
+        Destroy(Probe);
+        Probe = Instantiate(BuildingPrefabs[(int)_shopItem]);
         Probing = StartCoroutine("SelectPlacement");
-        selectedForPurchase = _shopItem;
-        Probe.GetComponent<MeshFilter>().mesh = ProbeMeshes[(int)_shopItem];
         selectedForPurchase = _shopItem;
     }
 
     public void EndBuyMode() {
         isBuyMode = false;
+        Destroy(Probe);
         Probe.SetActive(false);
     }
 
@@ -77,7 +78,7 @@ public class DragToPlace : MonoBehaviour {
 
         foreach (GameObject placedBuilding in PlacedBuildings)
         {
-            if (Probe.GetComponent<MeshCollider>().bounds.Intersects(placedBuilding.GetComponentInChildren<MeshCollider>().bounds))
+            if (Probe.GetComponentInChildren<MeshCollider>().bounds.Intersects(placedBuilding.GetComponentInChildren<MeshCollider>().bounds))
             {
                 PlacementAvailable = false;
                 print("UNAVAILABLE");
