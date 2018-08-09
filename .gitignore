@@ -34,3 +34,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+GameJamV2/ProjectSettings/ProjectSettings.asset
+GameJamV2/ProjectSettings/EditorBuildSettings.asset
